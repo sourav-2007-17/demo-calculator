@@ -1,0 +1,99 @@
+* {
+    text-transform:capitalize;
+}
+/* Page Background */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+/* Calculator Container */
+.calculator {
+    background: #222;
+    padding: 20px;
+    border-radius: 15px;
+    
+}
+
+/* Display Screen */
+.display {
+    height: 50px;
+    background: #000;
+    color: whitesmoke;
+    text-align: right;
+    font-size: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Buttons Grid */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+/* Button Style */
+button {
+    height: 60px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Number Buttons */
+button.number {
+    background: blue;
+    color: white;
+}
+
+button.number:hover {
+    background: pink;
+}
+
+/* Operator Buttons */
+button.operator {
+    background: #ff9500;
+    color: white;
+}
+
+button.operator:hover {
+    background: #e08900;
+}
+
+/* Equal Button */
+button.equal {
+    background: #28a745;
+    color: white;
+    grid-column: span 2;
+}
+
+button.equal:hover {
+    background: #218838;
+}
+
+/* Clear Button */
+button.clear {
+    background: #dc3545;
+    color: white;
+}
+
+button.clear:hover {
+    background: #c82333;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    .calculator {
+        width: 90%;
+    }
+}
