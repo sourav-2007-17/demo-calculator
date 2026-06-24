@@ -2,52 +2,118 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>my digital clock</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">   
-</head>
-  <body>
+    <title>Digital Clock & Calendar</title>
     <style>
-      *{
-    margin: 0px;
-    font-family: arial;
-    border: border-box;
-    text-transform:capitalize;
-}
-
-body{
-    background-image: url("photo1.jpg");
-    background-size: cover;
-    width:100%;
-    height:fit-content;
-}
-    
-.live-clock{
-    display: flex;
-    justify-content: center;
-
-}
-.clock{
-    background: black;
-    padding:30px 30px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 25px white;
-    justify-content: center;
-    text-align: center;
-}
-
-#time{
-    color: grey;
-    font-size: 60px;
-    letter-spacing: 5px; 
-}
+        body {
+            background-image: url("photo1.jpg");
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #282c34;
+            color: #61dafb;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        /* New style for the calendar */
+        .calendar {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0px 0px 10px #61dafb;
+            margin: 5%;
+            box-shadow: 0px 0px 25px whitesmoke;
+            font-family: arial;
+            border: border-box;
+            text-transform:capitalize;
+        }
+        p { 
+            text-align: center; 
+            margin: 10px; 
+            font-size: 30px;
+            font-weight: bold;
+            font-family: arial;
+            border: border-box;
+            text-transform:capitalize;
+            box-shadow: 0px 0px 25px whitesmoke;
+            background-color: white;
+            color: black;
+        }
+        .clock {
+            font-size: 5rem;
+            font-weight: bold;
+            border: 2px solid #61dafb;
+            padding: 30px 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 25px white;
+            text-align: center;
+            margin-bottom: 20px;
+            margin: 5%;
+        }
+        .clock2 { 
+            display: flex;
+            width: 300px; 
+            height: 300px; 
+            border: 10px solid #61dafb; 
+            border-radius: 50%; 
+            position: relative; 
+            background: #fff;
+            margin: 5%;
+             box-shadow: 0px 0px 25px white;
+        }
+        .hand {
+            position: absolute; 
+            width: 50%; 
+            height: 6px; 
+            background: #333;
+            top: 50%; 
+            transform-origin: 100%; 
+            transform: rotate(90deg);
+            transition: transform 0.05s cubic-bezier(0.4, 2.3, 0.3, 1);
+        }
+        .hour-hand { width: 30%; left: 20%; background: #000; }
+        .min-hand { width: 45%; left: 5%; background: #555; }
+        .second-hand { width: 48%; left: 2%; height: 2px; background: red; }
     </style>
-  <div class="live-clock">
-        <div class="clock">
-        <h1 id="time"></h1>
-        <script src="script.js"></script>
-        </div>
+</head>
+<body>
+
+    <div class="calendar" id="calendar"></div>
+
+    <p>DIGITAL CLOCK</p>
+    <div class="clock" id="clock">00:00:00</div>
+
+    <p>ANALOG WALL CLOCK</p>
+    <div class="clock2">
+        <div class="hand hour-hand" id="hourHand"></div>
+        <div class="hand min-hand" id="minHand"></div>
+        <div class="hand second-hand" id="secHand"></div>
     </div>
-    </body>
+
+    <script>
+        function updateAll() {
+            const now = new Date();
+            
+            // Update Calendar
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('calendar').textContent = now.toLocaleDateString(undefined, options);
+
+            // Update Digital Clock
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+
+            // Update Analog Clock
+            const secDegrees = ((now.getSeconds() / 60) * 360) + 90;
+            document.getElementById('secHand').style.transform = `rotate(${secDegrees}deg)`;
+            const minDegrees = ((now.getMinutes() / 60) * 360) + ((now.getSeconds()/60)*6) + 90;
+            document.getElementById('minHand').style.transform = `rotate(${minDegrees}deg)`;
+            const hourDegrees = ((now.getHours() / 12) * 360) + ((now.getMinutes()/60)*30) + 90;
+            document.getElementById('hourHand').style.transform = `rotate(${hourDegrees}deg)`;
+        }
+        
+        setInterval(updateAll, 1000);
+        updateAll();
+    </script>
+</body>
 </html>
