@@ -2,54 +2,149 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Digital Clock & Calendar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Digital Clock</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgd[...]">
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            background-image: url("photo1.jpg");
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #282c34;
-            color: #61dafb;
-            font-family: 'Courier New', Courier, monospace;
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-attachment: fixed;
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Courier New', monospace;
+      }
+
+      .live-clock {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .clock {
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(10px);
+        padding: 50px 80px;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 60px rgba(102, 126, 234, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 60px rgba(102, 126, 234, 0.5);
         }
-        /* New style for the calendar */
-        .calendar {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            text-shadow: 0px 0px 10px #61dafb;
-            margin: 5%;
-            box-shadow: 0px 0px 25px whitesmoke;
-            font-family: arial;
-            border: border-box;
-            text-transform:capitalize;
+        50% {
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 80px rgba(102, 126, 234, 0.8);
         }
-        p { 
-            text-align: center; 
-            margin: 10px; 
-            font-size: 30px;
-            font-weight: bold;
-            font-family: arial;
-            border: border-box;
-            text-transform:capitalize;
-            box-shadow: 0px 0px 25px whitesmoke;
-            background-color: white;
-            color: black;
+      }
+
+      #time {
+        color: #00ff41;
+        font-size: 80px;
+        font-weight: bold;
+        letter-spacing: 8px;
+        text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41;
+        animation: glow 1.5s ease-in-out infinite;
+      }
+
+      @keyframes glow {
+        0%, 100% {
+          text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41;
         }
+        50% {
+          text-shadow: 0 0 30px #00ff41, 0 0 60px #00ff41, 0 0 80px #00ff41;
+        }
+      }
+
+      .date-display {
+        color: #00ff41;
+        font-size: 24px;
+        letter-spacing: 4px;
+        margin-top: 20px;
+        opacity: 0.9;
+      }
+
+      .toggle-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: 2px solid #00ff41;
+        padding: 12px 30px;
+        font-size: 16px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .toggle-btn:hover {
+        background: #00ff41;
+        color: #000;
+        box-shadow: 0 6px 20px rgba(0, 255, 65, 0.6);
+        transform: translateY(-2px);
+      }
+
+      .toggle-btn:active {
+        transform: translateY(0);
+      }
+
+      .format-24 {
+        font-size: 18px;
+        color: #00ff41;
+        opacity: 0.7;
+        margin-top: 15px;
+      }
+
+      @media (max-width: 768px) {
         .clock {
-            font-size: 5rem;
-            font-weight: bold;
-            border: 2px solid #61dafb;
-            padding: 30px 30px;
-            border-radius: 15px;
-            box-shadow: 0px 0px 25px white;
-            text-align: center;
-            margin-bottom: 20px;
-            margin: 5%;
+          padding: 40px 50px;
         }
-        .clock2 { 
+
+        #time {
+          font-size: 50px;
+          letter-spacing: 5px;
+        }
+
+        .date-display {
+          font-size: 18px;
+          letter-spacing: 2px;
+        }
+
+        .toggle-btn {
+          padding: 10px 20px;
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .clock {
+          padding: 30px 35px;
+        }
+
+        #time {
+          font-size: 40px;
+          letter-spacing: 3px;
+        }
+
+        .date-display {
+          font-size: 14px;
+        }
+      }
+       .clock2 { 
             display: flex;
             width: 300px; 
             height: 300px; 
@@ -70,39 +165,44 @@
             transform: rotate(90deg);
             transition: transform 0.05s cubic-bezier(0.4, 2.3, 0.3, 1);
         }
-        .hour-hand { width: 30%; left: 20%; background: #000; }
-        .min-hand { width: 45%; left: 5%; background: #555; }
-        .second-hand { width: 48%; left: 2%; height: 2px; background: red; }
+        .hour-hand 
+        { width: 30%; 
+          left: 20%; 
+          background: #000; 
+        }
+        .min-hand 
+        { width: 45%; 
+          left: 5%; 
+          background: #555; 
+        }
+        .second-hand 
+        { width: 48%; 
+          left: 2%; 
+          height: 2px; 
+          background: red; 
+        }
     </style>
-</head>
-<body>
-
-    <div class="calendar" id="calendar"></div>
-
-    <p>DIGITAL CLOCK</p>
-    <div class="clock" id="clock">00:00:00</div>
-
-    <p>ANALOG WALL CLOCK</p>
+  </head>
+  <body>
+    <div class="live-clock">
+      <div class="clock">
+        <h1 id="time"></h1>
+        <div class="date-display" id="date"></div>
+        <p class="format-24" id="format-label">24-Hour Format</p>
+      </div>
+      <button class="toggle-btn" id="toggleBtn">Switch to 12-Hour Format</button>
+    </div>
     <div class="clock2">
         <div class="hand hour-hand" id="hourHand"></div>
         <div class="hand min-hand" id="minHand"></div>
         <div class="hand second-hand" id="secHand"></div>
     </div>
 
+
     <script>
         function updateAll() {
             const now = new Date();
-            
-            // Update Calendar
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('calendar').textContent = now.toLocaleDateString(undefined, options);
-
-            // Update Digital Clock
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
-
+          
             // Update Analog Clock
             const secDegrees = ((now.getSeconds() / 60) * 360) + 90;
             document.getElementById('secHand').style.transform = `rotate(${secDegrees}deg)`;
@@ -114,6 +214,42 @@
         
         setInterval(updateAll, 1000);
         updateAll();
+      let is24Hour = true;
+
+      function updateClock() {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        let period = '';
+
+        if (!is24Hour) {
+          period = hours >= 12 ? ' PM' : ' AM';
+          hours = hours % 12;
+          hours = hours ? hours : 12;
+        }
+
+        hours = String(hours).padStart(2, '0');
+        const timeString = `${hours}:${minutes}:${seconds}${period}`;
+        document.getElementById('time').textContent = timeString;
+
+        // Update date
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const dateString = now.toLocaleDateString('en-US', options);
+        document.getElementById('date').textContent = dateString;
+      }
+
+      // Toggle format
+      document.getElementById('toggleBtn').addEventListener('click', function() {
+        is24Hour = !is24Hour;
+        const formatLabel = document.getElementById('format-label');
+        this.textContent = is24Hour ? 'Switch to 12-Hour Format' : 'Switch to 24-Hour Format';
+        formatLabel.textContent = is24Hour ? '24-Hour Format' : '12-Hour Format';
+        updateClock();
+      });
+      // Update clock immediately and then every second
+      updateClock();
+      setInterval(updateClock, 1000);
     </script>
-</body>
+  </body>
 </html>
