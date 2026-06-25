@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOGIN INFO</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+
+    }
+    body {
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+     
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      width: 300px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .input-box {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 12px 15px;
+      background: none;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 18px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+      transition: 0.3s;
+    }
+
+    .input-box input:focus{
+      border-color:#00ffff;
+      box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+    }
+
+    .input-box span {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+      transition: 0.4s;
+      transform: translateY(-50%);
+    }
+
+    .input-box input:focus + span,
+    .input-box input:not(:placeholder-shown) + span {
+      top: 5px;
+      font-size: 12px;
+      color: #00ffff;
+    }
+
+    .submit-btn {
+      background: linear-gradient(90deg, #00ffff, #00ff80);
+      border: none;
+      padding: 12px 30px;
+      color: #000;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(90deg, #00ff80, #00ffff);
+      box-shadow: 0 5px 15px #00ff80
+    }
+
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>login</h2>
+    <div class="input-box">
+      <input type="text" placeholder=" ">
+      <span>Username</span>
+    </div>
+    <div class="input-box">
+      <input type="password" placeholder=" ">
+      <span>Password</span>
+    </div>
+    <button class="submit-btn">Login</button>
+  </div>
+</body>
+</html>
